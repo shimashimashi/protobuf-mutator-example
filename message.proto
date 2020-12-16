@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message Msg {
+  optional uint64 optional_uint64 = 1;
+  optional string optional_string = 2;
+}
