@@ -6,8 +6,7 @@ all: fuzzer
 fuzzer: fuzzer.o message.pb.o
 	$(CXX) $(CXXFLAGS) -fsanitize=fuzzer,address -o fuzzer \
 	-Wl,-rpath,/usr/local/lib fuzzer.o message.pb.o \
-	/usr/local/lib/libprotobuf-mutator-libfuzzer.a /usr/local/lib/libprotobuf-mutator.a /usr/local/lib/libprotobuf.so \
-	-pthread
+	-L/usr/local/lib -lprotobuf-mutator-libfuzzer -lprotobuf-mutator -lprotobuf -pthread
 
 fuzzer.o: message.pb.h
 	$(CXX) $(CXXFLAGS) -fsanitize=fuzzer-no-link -std=gnu++11 \
